@@ -13,10 +13,16 @@ body{
 }
 .card-header{
     text-transform: uppercase;
-    background-color: #e2a97e;
+    background-color: #6c757d;
+    color:white;
   
 }
-
+h1{
+    padding: 5px;
+    text-align: center;
+    font-weight: 800;
+    font-size: 4rem;
+}
 img{
     display: flex;
     align-items: center;

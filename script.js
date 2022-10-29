@@ -1,9 +1,14 @@
+
+       //* Name,capital,region
+       
 var res=fetch("https://restcountries.com/v2/all")
 .then((data)=>data.json())
 .then((data1)=>{
     console.log(data1)
     var div=document.createElement("div");
      div.setAttribute("class","container");
+     var htag=document.createElement("h1");
+     htag.innerHTML=`Weather API`
      var div1=document.createElement("div");
      div1.setAttribute("class","row");
 
@@ -20,18 +25,27 @@ div2.innerHTML=`   <div class="card" style="width: 20rem;">
   <h5 class="card-title"><b>Region:</b>${data1[i].region}</h5>
   <h5 class="card-title"><b>Country-Code:</b>${data1[i].alpha3Code}</h5>
  
-  <a href="#" class="btn btn-secondary">Click For Weather</a>
+  <button class="btn btn-secondary" id="button" onclick=foo(${data1[i].latlng},${data1[i].latlng})><a>Click For Weather</a></button>
 </div>
 </div> `
+
+
 div1.append(div2)
 }
 
 
 div.append(div1);
-document.body.append(div)
+document.body.append(htag,div)
 })
 .catch((error)=>console.log(error));
 
+function foo(a,b){ 
+   
+  fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${a}&lon=${b}&appid=68d4b5af00cd5dde723e854f0323f3c1`) 
+  .then((data)=>data.json()) 
+  .then((data1)=>{     
+    alert(`Temperature: ${data1.main.temp}`); 
+  }); 
+}
 
-// <h5 class="card-title"><b>>Latitude:</b>${data1[i].latlng[0]}</h5>
-// <h5 class="card-title"><b>Longtitude:</b>${data1[i].latlng[1]}</h5>
+
